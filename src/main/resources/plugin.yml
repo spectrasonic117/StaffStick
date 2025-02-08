@@ -1,5 +1,14 @@
 name: StaffStick
-version: '${version}'
+version: "${version}"
 main: com.spectrasonic.StaffStick.Main
-api-version: '1.21'
+api-version: "1.21"
 authors: [Spectrasonic]
+commands:
+    staffstick:
+        permission: staffstick.give
+        aliases: [ss]
+permissions:
+    staffstick.give:
+        description: op
+    staffstick.use:
+        description: op
