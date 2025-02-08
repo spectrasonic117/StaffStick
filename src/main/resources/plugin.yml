@@ -1,0 +1,5 @@
+name: StaffStick
+version: '${version}'
+main: com.spectrasonic.StaffStick.Main
+api-version: '1.21'
+authors: [Spectrasonic]
