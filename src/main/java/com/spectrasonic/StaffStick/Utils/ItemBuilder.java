@@ -11,6 +11,7 @@ import org.bukkit.NamespacedKey;
 import java.util.*;
 
 public class ItemBuilder {
+
     private final ItemStack item;
     private final ItemMeta meta;
     private final Map<Enchantment, Integer> enchantments = new HashMap<>();
@@ -19,7 +20,8 @@ public class ItemBuilder {
 
     public static ItemBuilder setMaterial(String materialName) {
         Material material = Material.matchMaterial(materialName.toUpperCase());
-        if (material == null) throw new IllegalArgumentException("Invalid material: " + materialName);
+        if (material == null)
+            throw new IllegalArgumentException("Invalid material: " + materialName);
         return new ItemBuilder(material);
     }
 
@@ -55,19 +57,19 @@ public class ItemBuilder {
     public ItemBuilder addEnchantment(String enchantName, int level) {
         NamespacedKey key = NamespacedKey.minecraft(enchantName.toLowerCase());
         Enchantment enchantment = Enchantment.getByKey(key);
-        
+
         if (enchantment == null) {
             throw new IllegalArgumentException("Encantamiento inválido: " + enchantName);
         }
-        
+
         // Verificamos si el nivel es válido
-        if(level < 1 || level > enchantment.getMaxLevel()) {
+        if (level < 1 || level > enchantment.getMaxLevel()) {
             throw new IllegalArgumentException("Nivel inválido para el encantamiento: " + level);
+        }
+
+        enchantments.put(enchantment, level);
+        return this;
     }
-    
-    enchantments.put(enchantment, level);
-    return this;
-}
 
     /**
      * Añade una bandera de ítem utilizando el nombre de la bandera.
@@ -88,7 +90,8 @@ public class ItemBuilder {
     /**
      * Define si el ítem es irrompible.
      *
-     * @param unbreakable true si el ítem debe ser irrompible, false en caso contrario.
+     * @param unbreakable true si el ítem debe ser irrompible, false en caso
+     *                    contrario.
      * @return La instancia actual de ItemBuilder.
      */
     public ItemBuilder setUnbreakable(boolean unbreakable) {
@@ -120,19 +123,19 @@ public class ItemBuilder {
     }
 }
 
-
-/* Modo de uso del ItemBuilder
-    
-    var BUILDITEM = ItemBuilder.setMaterial("MATERIAL_ITEM")
-            .setName("ITEMNAME")
-            .setLore("LORE 1",
-                    "LORE 2",
-                    "LORE 3")
-            .addEnchantment("ENCHANTMENT_NAME", INT)
-            .setUnbreakable(BOOL)
-            .addItemFlag("ITEMFLAG_NAME")
-            .setCustomModelData(INT)
-            .build();
-    target.getInventory().addItem(StaffStickItem);
-        
-*/
+/*
+ * Modo de uso del ItemBuilder
+ * 
+ * var BUILDITEM = ItemBuilder.setMaterial("MATERIAL_ITEM")
+ * .setName("ITEMNAME")
+ * .setLore("LORE 1",
+ * "LORE 2",
+ * "LORE 3")
+ * .addEnchantment("ENCHANTMENT_NAME", INT)
+ * .setUnbreakable(BOOL)
+ * .addItemFlag("ITEMFLAG_NAME")
+ * .setCustomModelData(INT)
+ * .build();
+ * target.getInventory().addItem(StaffStickItem);
+ * 
+ */

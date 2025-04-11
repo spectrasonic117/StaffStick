@@ -4,9 +4,9 @@ import co.aikar.commands.BukkitCommandManager;
 import com.spectrasonic.StaffStick.Commands.StaffStickCommand;
 import com.spectrasonic.StaffStick.Listeners.PlayerInteractListener;
 import com.spectrasonic.StaffStick.Listeners.PlayerMoveListener;
-import lombok.Getter;
 import com.spectrasonic.StaffStick.Utils.MessageUtils;
 import org.bukkit.plugin.java.JavaPlugin;
+import lombok.Getter;
 
 public final class Main extends JavaPlugin {
 

@@ -11,16 +11,18 @@ public class PlayerInteractListener implements Listener {
 
     @EventHandler
     public void onPlayerInteractEntity(PlayerInteractEntityEvent event) {
-        if (!(event.getRightClicked() instanceof Player target)) return;
+        if (!(event.getRightClicked() instanceof Player target))
+            return;
 
         Player player = event.getPlayer();
         var itemInHand = player.getInventory().getItemInMainHand();
-        
-        if (!player.hasPermission("staffstick.use") || 
-            !itemInHand.getType().equals(Material.BLAZE_ROD) ||
-            !itemInHand.hasItemMeta() ||
-            itemInHand.getItemMeta().getCustomModelData() != 1000 ||
-            !itemInHand.getItemMeta().hasDisplayName()) return;
+
+        if (!player.hasPermission("staffstick.staff") ||
+                !itemInHand.getType().equals(Material.BLAZE_ROD) ||
+                !itemInHand.hasItemMeta() ||
+                itemInHand.getItemMeta().getCustomModelData() != 1000 ||
+                !itemInHand.getItemMeta().hasDisplayName())
+            return;
 
         if (FreezeManager.isPlayerFrozen(target)) {
             FreezeManager.unfreezePlayer(target);
@@ -28,5 +30,5 @@ public class PlayerInteractListener implements Listener {
             FreezeManager.freezePlayer(target);
         }
     }
-    
+
 }
